@@ -23,7 +23,7 @@ router.get('/products', function (req, res) {
           
             //var query = 'select a.item_number, a.description, a.long_description, a.catalogue_category, a.sku_unit_of_measure, a.sku_attribute1, a.sku_attribute_value1, a.sku_attribute2, a.sku_attribute_value2, a.sku_attribute3, a.sku_attribute_value3, b.list_price, b.discount, b.in_stock, c.brand from xxibm_product_sku a, xxibm_product_pricing b, xxibm_product_style c where a.item_number=b.item_number and c.item_number=round(a.item_number/1000) * 1000';
             //var query = 'select * from xxibm_product_sku';
-            var query = 'show tables like "xxibm_%"'
+            var query = 'show tables'
             connection.query(query, function (error, results, fields) {
                 
             if(error){
