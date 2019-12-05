@@ -22,8 +22,7 @@ router.get('/products', function (req, res) {
             var item = {};
           
             //var query = 'select a.item_number, a.description, a.long_description, a.catalogue_category, a.sku_unit_of_measure, a.sku_attribute1, a.sku_attribute_value1, a.sku_attribute2, a.sku_attribute_value2, a.sku_attribute3, a.sku_attribute_value3, b.list_price, b.discount, b.in_stock, c.brand from xxibm_product_sku a, xxibm_product_pricing b, xxibm_product_style c where a.item_number=b.item_number and c.item_number=round(a.item_number/1000) * 1000';
-            //var query = 'select * from xxibm_product_sku';
-            var query = 'show tables'
+            var query = 'select a.ITEM_NUMBER, a.DESCRIPTION, a.LONG_DESCRIPTION, a.CATALOGUE_CATEGORY, a.SKU_UNIT_OF_MEASURE, a.SKU_ATTRIBUTE1, a.SKU_ATTRIBUTE_VALUE1, a.SKU_ATTRIBUTE2, a.SKU_ATTRIBUTE_VALUE2, a.SKU_ATTRIBUTE3, a.SKU_ATTRIBUTE_VALUE3, b.LIST_PRICE, b.DISCOUNT, b.IN_STOCK, c.BRAND from XXIBM_PRODUCT_SKU a, XXIBM_PRODUCT_PRICING b, XXIBM_PRODUCT_STYLE c where a.ITEM_NUMBER=b.ITEM_NUMBER and c.ITEM_NUMBER=ROUND(a.ITEM_NUMBER/1000) * 1000';
             connection.query(query, function (error, results, fields) {
                 
             if(error){
@@ -32,23 +31,23 @@ router.get('/products', function (req, res) {
             }
             console.log("Query results...");
             console.log(results);
-            /*
+            
             if(results) {
                 Object.keys(results).forEach(function(key) {
                     var row = results[key];
                     if (row) {
                         item.category = {};
-                        item.sku = row.item_number;
-                        item.description = row.description;
-                        item.long_description = row.long_description;
-                        //item.price = row.list_price;
-                        //item.discount = row.discount;
-                        //item.uom = row.sku_unit_of_measure;
-                        //item.brand = row.brand;
-                        //item.size = row.sku_attribute_value1;
-                        //item.color = row.sku_attribute_value2;
-                        //item.in_stock = row.in_stock;
-                        item.category.id = row.catalogue_category;
+                        item.sku = row.ITEM_NUMBER;
+                        item.description = row.DESCRIPTION;
+                        item.long_description = row.LONG_DESCRIPTION;
+                        item.price = row.LIST_PRICE;
+                        item.discount = row.DISCOUNT;
+                        item.uom = row.SKU_UNIT_OF_MEASURE;
+                        item.brand = row.BRAND;
+                        item.size = row.SKU_ATTRIBUTE_VALUE1;
+                        item.color = row.SKU_ATTRIBUTE_VALUE2;
+                        item.in_stock = row.IN_STOCK;
+                        item.category.id = row.CATALOGUE_CATEGORY;
                         response.items.push(item);
                         console.log(item);
                         
@@ -57,7 +56,6 @@ router.get('/products', function (req, res) {
 
                 });
             }
-            */
             
             response.total = response.items.length;
             
