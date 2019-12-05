@@ -22,7 +22,8 @@ router.get('/products', function (req, res) {
             var item = {};
           
             //var query = 'select a.item_number, a.description, a.long_description, a.catalogue_category, a.sku_unit_of_measure, a.sku_attribute1, a.sku_attribute_value1, a.sku_attribute2, a.sku_attribute_value2, a.sku_attribute3, a.sku_attribute_value3, b.list_price, b.discount, b.in_stock, c.brand from xxibm_product_sku a, xxibm_product_pricing b, xxibm_product_style c where a.item_number=b.item_number and c.item_number=round(a.item_number/1000) * 1000';
-            var query = 'select * from xxibm_product_sku';
+            //var query = 'select * from xxibm_product_sku';
+            var query = 'show tables like "xxibm_product_%"'
             connection.query(query, function (error, results, fields) {
                 
             if(error){
@@ -31,6 +32,7 @@ router.get('/products', function (req, res) {
             }
             console.log("Query results...");
             console.log(results);
+            /*
             if(results) {
                 Object.keys(results).forEach(function(key) {
                     var row = results[key];
@@ -39,15 +41,14 @@ router.get('/products', function (req, res) {
                         item.sku = row.item_number;
                         item.description = row.description;
                         item.long_description = row.long_description;
-                        item.price = row.list_price;
-                        item.discount = row.discount;
-                        item.uom = row.sku_unit_of_measure;
-                        item.brand = row.brand;
-                        item.size = row.sku_attribute_value1;
-                        item.color = row.sku_attribute_value2;
-                        item.in_stock = row.in_stock;
+                        //item.price = row.list_price;
+                        //item.discount = row.discount;
+                        //item.uom = row.sku_unit_of_measure;
+                        //item.brand = row.brand;
+                        //item.size = row.sku_attribute_value1;
+                        //item.color = row.sku_attribute_value2;
+                        //item.in_stock = row.in_stock;
                         item.category.id = row.catalogue_category;
-                        item.effective
                         response.items.push(item);
                         console.log(item);
                         
@@ -56,6 +57,7 @@ router.get('/products', function (req, res) {
 
                 });
             }
+            */
             
             response.total = response.items.length;
             
