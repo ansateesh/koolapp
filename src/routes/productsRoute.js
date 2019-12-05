@@ -10,7 +10,6 @@ router.get('/products', function (req, res) {
             let resObj = {};
             let responseBody = [];
 
-            var errorInfo = errorUtil.validateError(errors.array());
             resObj.code = 100;
             resObj.message = "Error while retrieving catalog";
             responseBody.push(resObj);
